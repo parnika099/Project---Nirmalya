@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nashik Temple Rover Monitoring System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Top Navbar -->
+      <header class="top-nav">
+        <div class="nav-left">
+          <div class="brand-mark">NT</div>
+          <div class="nav-titles">
+            <h1>Nashik Temple Rover Monitoring System</h1>
+            <p>Real-time monitoring of autonomous Nirmalya collection rover</p>
+          </div>
+        </div>
+        <div class="nav-right">
+          <div class="status-pill" id="system-status-pill">
+            <span class="status-dot online"></span>
+            <span id="system-status-text">Online · Idle</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="layout">
+        <!-- Left dashboard panel -->
+        <aside class="sidebar">
+          <!-- Rover Stats Card -->
+          <section class="card">
+            <h2>Rover Telemetry</h2>
+            <div class="stats-grid">
+              <div class="stat">
+                <span class="label">Status</span>
+                <span class="value" id="rover-status-text">Idle</span>
+              </div>
+              <div class="stat">
+                <span class="label">Speed</span>
+                <span class="value" id="rover-speed-text">0 km/h</span>
+              </div>
+              <div class="stat">
+                <span class="label">Distance Covered</span>
+                <span class="value" id="rover-distance-text">0.00 km</span>
+              </div>
+              <div class="stat">
+                <span class="label">Route Progress</span>
+                <span class="value" id="rover-progress-text">0%</span>
+              </div>
+              <div class="stat">
+                <span class="label">Estimated Time Left</span>
+                <span class="value" id="rover-eta-text">–</span>
+              </div>
+              <div class="stat">
+                <span class="label">Current Coordinates</span>
+                <span class="value small" id="rover-coords-text">–, –</span>
+              </div>
+            </div>
+
+            <div class="controls-row">
+              <button id="btn-start" class="btn primary">Start</button>
+              <button id="btn-pause" class="btn subtle">Pause</button>
+              <button id="btn-reset" class="btn subtle">Reset</button>
+            </div>
+          </section>
+
+          <!-- Temple List Card -->
+          <section class="card">
+            <h2>Temple Nodes</h2>
+            <p class="card-subtitle">
+              Nodes derived from Nashik temple cluster for smart Nirmalya
+              collection.
+            </p>
+            <div class="temple-list" id="temple-list"></div>
+          </section>
+
+          <!-- Input Format Card -->
+          <section class="card">
+            <h2>Data Structure</h2>
+            <p class="card-subtitle">
+              The dashboard accepts JSON arrays for temple locations and rover
+              route waypoints.
+            </p>
+            <div class="code-snippet">
+              <pre>
+temples = [
+  { name: "Temple 1", lat: 19.9975, lng: 73.7898 },
+  { name: "Temple 2", lat: 20.0112, lng: 73.7769 }
+];
+
+roverPathCoords = [
+  [19.9975, 73.7898],
+  [20.0112, 73.7769]
+];</pre>
+            </div>
+          </section>
+        </aside>
+
+        <!-- Right map panel -->
+        <main class="map-panel">
+          <div class="map-card">
+            <div class="map-header">
+              <div>
+                <h2>Temple & Rover Map</h2>
+                <p>
+                  Leaflet + OpenStreetMap view centered on Nashik, Maharashtra,
+                  India.
+                </p>
+              </div>
+              <div class="legend">
+                <div class="legend-item">
+                  <span class="legend-dot temple"></span>Temple node
+                </div>
+                <div class="legend-item">
+                  <span class="legend-line route"></span>Rover route
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot rover"></span>Rover
+                </div>
+              </div>
+            </div>
+            <div id="map"></div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
