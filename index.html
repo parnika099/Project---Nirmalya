@@ -73,11 +73,91 @@
             </div>
           </div>
 
+          <div class="speed-selector-row">
+            <label for="rover-speed-select" class="speed-label">Demo speed</label>
+            <select id="rover-speed-select" class="speed-select">
+              <option value="10">10 km/h</option>
+              <option value="12" selected>12 km/h</option>
+              <option value="15">15 km/h</option>
+              <option value="18">18 km/h</option>
+            </select>
+          </div>
           <div class="controls-row">
             <button id="btn-start" class="btn primary">Start</button>
             <button id="btn-pause" class="btn subtle">Pause</button>
             <button id="btn-reset" class="btn subtle">Reset</button>
           </div>
+        </section>
+
+        <!-- Waste-to-Product Pipeline Card -->
+        <section class="card">
+          <h2>Waste-to-Product Pipeline</h2>
+          <p class="card-subtitle">Nirmalya conversion projects</p>
+          <div class="pipeline-grid">
+            <div class="pipeline-item">
+              <span class="pipeline-icon">🌱</span>
+              <span class="pipeline-label">Fertilizer</span>
+              <span class="pipeline-value">100–200 kg → 40 kg compost · 30 days</span>
+            </div>
+            <div class="pipeline-item">
+              <span class="pipeline-icon">🌿</span>
+              <span class="pipeline-label">Room Freshener</span>
+              <span class="pipeline-value">3 kg flowers → 10–12 L</span>
+            </div>
+            <div class="pipeline-item">
+              <span class="pipeline-icon">🔥</span>
+              <span class="pipeline-label">Solid Fuel</span>
+              <span class="pipeline-value">Briquettes (cow dung + jaggery binder)</span>
+            </div>
+            <div class="pipeline-item">
+              <span class="pipeline-icon">🎨</span>
+              <span class="pipeline-label">Natural Dyes</span>
+              <span class="pipeline-value">Soxhlet extraction · concentrated extract</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Estimated Collection Card -->
+        <section class="card">
+          <h2>Estimated Nirmalya Yield</h2>
+          <p class="card-subtitle">Based on rover route progress · 26 temples</p>
+          <div class="stats-grid">
+            <div class="stat">
+              <span class="label">Temples Passed</span>
+              <span class="value" id="temples-passed-text">0</span>
+            </div>
+            <div class="stat">
+              <span class="label">Est. Waste (kg)</span>
+              <span class="value" id="est-waste-text">0</span>
+            </div>
+            <div class="stat">
+              <span class="label">Est. Compost (kg)</span>
+              <span class="value" id="est-compost-text">0</span>
+            </div>
+            <div class="stat">
+              <span class="label">Est. Freshener (L)</span>
+              <span class="value" id="est-freshener-text">0</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Route Optimization Card -->
+        <section class="card">
+          <h2>Route Optimization</h2>
+          <p class="card-subtitle">Shortest path algorithms (TSP) for faster temple visits</p>
+          <div class="algo-grid">
+            <div class="algo-item">
+              <span class="algo-name">Nearest Neighbor</span>
+              <span class="algo-value" id="nn-dist">–</span>
+            </div>
+            <div class="algo-item">
+              <span class="algo-name">2-Opt Improved</span>
+              <span class="algo-value" id="twoopt-dist">–</span>
+            </div>
+          </div>
+          <p class="algo-note">
+            Green dashed line shows 2-opt optimized visit order.
+          </p>
         </section>
 
         <!-- Layer Toggles Card -->
@@ -105,7 +185,29 @@
               <span class="toggle-line route"></span>
               Rover Route <span class="toggle-count">(18.60 km)</span>
             </label>
+            <label class="toggle-row">
+              <input type="checkbox" id="toggle-processing" checked />
+              <span class="toggle-dot processing"></span>
+              Processing Facilities <span class="toggle-count">(2)</span>
+            </label>
+            <label class="toggle-row">
+              <input type="checkbox" id="toggle-optimized" />
+              <span class="toggle-line optimized"></span>
+              2-Opt Route <span class="toggle-count" id="optimized-dist">(– km)</span>
+            </label>
           </div>
+        </section>
+
+        <!-- Impact Card -->
+        <section class="card">
+          <h2>Project Impact</h2>
+          <p class="card-subtitle">Sustainable Nirmalya Management goals</p>
+          <ul class="impact-list">
+            <li>Reduction in unmanaged temple waste</li>
+            <li>Efficient logistics & collection planning</li>
+            <li>Waste-to-wealth: fertilizers, incense, compost, bio-enzymes</li>
+            <li>Circular economy & sustainable environment</li>
+          </ul>
         </section>
 
         <!-- Temple List Card -->
@@ -122,9 +224,8 @@
         <section class="card">
           <h2>Data Source</h2>
           <p class="card-subtitle">
-            Locations extracted from <strong>Kumbh mela.kmz.zip</strong> using
-            Python xml.etree + GeoPandas. Route optimization: nearest-neighbor
-            algorithm starting from Ramkund (18.60 km total).
+            Locations from <strong>Kumbh mela.kmz.zip</strong> via GeoPandas.
+            Route optimization: nearest-neighbor & 2-opt (TSP).
           </p>
           <div class="code-snippet">
             <pre>
@@ -162,6 +263,9 @@
               </div>
               <div class="legend-item">
                 <span class="legend-dot rover"></span>Rover
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot processing"></span>Processing
               </div>
             </div>
           </div>
