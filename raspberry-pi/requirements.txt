@@ -1,0 +1,12 @@
+# Raspberry Pi detection dependencies
+# Install: pip install -r requirements.txt
+
+opencv-python-headless>=4.5.0   # Use opencv-python if not on Pi
+numpy>=1.19.0
+RPi.GPIO>=0.7.0                 # Only on Raspberry Pi (skip on other platforms)
+
+# Waste detection stream (waste_detection_stream.py)
+# Install with prereleases allowed: uv pip install --prerelease=allow -r requirements.txt
+# Or: pip install --pre -r requirements.txt
+inference>=1.0.0rc1
+supervision>=0.25.0
